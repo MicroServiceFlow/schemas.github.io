@@ -1,0 +1,104 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://schemas.msflow.org/standard/latest",
+    "title": "JSON Schema for MSF standard",
+    "description": "Schema for describe and validation configuration for standard",
+    "type": "object",
+    "properties": {
+      "version": {
+        "type": "number",
+        "description": "Standard's version"
+      },
+      "id": {
+        "type": "string",
+        "description": "ID for standard"
+      },
+      "name": {
+        "type": "string",
+        "description": "Name for standard"
+      },
+      "description": {
+        "type": "string",
+        "description": "Description for standard"
+      },
+      "communication": {
+        "type": "object",
+        "properties": {
+          "amqp": {
+            "type": "object",
+            "description": "AMQP configuration",
+            "properties": {
+              "input": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/amqpChannels"}
+              },
+              "output": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/amqpChannels"}
+              }
+            },
+            "anyOf": [
+              {
+                "required": ["input"]
+              },
+              {
+                "required": ["output"]
+              }
+            ],
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "additionalProperties": false,
+    "required": ["version", "id", "name", "description"],
+
+    "$defs": {
+      "amqpChannels": {
+        "type": "object",
+        "properties": {
+          "channelName": {
+            "type": "string",
+            "description": "Channel name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Channel description"
+          },
+          "validation": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Communication data type"
+              },
+              "parameters": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "parameterName": {
+                      "type": "string",
+                      "description": "Parameter name"
+                    },
+                    "rule": {
+                      "type": "string",
+                      "description": "Parameter rules"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Parameter description"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+}
