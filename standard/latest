@@ -95,9 +95,11 @@
                 }
               }
             },
+            "required": ["type", "parameters"],
             "additionalProperties": false
           }
         },
+        "required": ["channelName", "description", "validation"],
         "additionalProperties": false
       }
     }
