@@ -1,0 +1,54 @@
+{
+  "version": 0.1,
+  "id": "base",
+  "name": "Base standard",
+  "description": "Base standard description",
+  "communication": {
+    "amqp": {
+      "input": [
+        {
+          "channelName": "ping",
+          "description": "Checking service availability",
+          "validation": {
+            "type": "json",
+            "parameters": [
+              {
+                "parameterName": "serviceName",
+                "rule": "required|string|min:1",
+                "description": "Sender service name"
+              },
+              {
+                "parameterName": "timestamp",
+                "rule": "required|timestamp"
+              }
+            ]
+          }
+        }
+      ],
+      "output": [
+        {
+          "channelName": "pong",
+          "description": "Send information about service",
+          "validation": {
+            "type": "json",
+            "parameters": [
+              {
+                "parameterName": "serviceName",
+                "rule": "required|string|min:1",
+                "description": "Sender service name"
+              },
+              {
+                "parameterName": "status",
+                "rule": "required|enum:ok"
+              },
+              {
+                "parameterName": "timestamp",
+                "rule": "required|timestamp"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
