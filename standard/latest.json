@@ -9,6 +9,10 @@
         "type": "number",
         "description": "Standard's version"
       },
+      "parent": {
+        "type": "string",
+        "description": "Parent standard"
+      },
       "id": {
         "type": "string",
         "description": "ID for standard"
@@ -53,7 +57,6 @@
     },
     "additionalProperties": false,
     "required": ["version", "id", "name", "description"],
-
     "$defs": {
       "amqpChannels": {
         "type": "object",
